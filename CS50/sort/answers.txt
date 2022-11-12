@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Outperforms against 3 on sorted numbers implying its exit strategy works
+
+sort2 uses: Merge Sort
+
+How do you know?: Outperforms when handling high random numbers
+
+sort3 uses: Selection Sort
+
+How do you know?: Deduced to be number three due to the logic of the first 2 sorts
