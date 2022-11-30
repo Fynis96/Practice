@@ -1,19 +1,27 @@
-from openpyxl import Workbook
+from pymongo import MongoClient
 from itemadapter import ItemAdapter
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+DBURI = os.getenv('DBURI')
 
 
 class EbookscraperPipeline:
     
     def open_spider(self, spider):
-        self.workbook = Workbook()
-        self.sheet = self.workbook.active
-        self.sheet.title = 'ebooks'
-        self.sheet.append(spider.cols)
+        
+        self.client = MongoClient(
+            host=DBURI,
+            connect=False
+        )
+        self.collection = self.client.get_database("ebook").get_collection("travel")
     
     def process_item(self, item, spider):
-        self.sheet.append([ item['title'], item['price'] ])
-        
+        self.collection.insert_one(
+            ItemAdapter(item).asdict()
+        )
         return item
     
     def close_spider(self, spider):
-        self.workbook.save('ebooks.xlsx')
+        self.client.close()
