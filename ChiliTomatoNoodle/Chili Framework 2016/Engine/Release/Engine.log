@@ -1,0 +1,14 @@
+﻿  compilation header save succeeded; see C:\Users\Fynis\Downloads\Chili DirectX Framework\Chili Framework 2016\Engine\FramebufferPS.shh
+  compilation header save succeeded; see C:\Users\Fynis\Downloads\Chili DirectX Framework\Chili Framework 2016\Engine\FramebufferVS.shh
+  DXErr.cpp
+  Game.cpp
+  Graphics.cpp
+  Keyboard.cpp
+  Main.cpp
+  MainWindow.cpp
+  Mouse.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 544 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Engine.vcxproj -> C:\Users\Fynis\Downloads\Chili DirectX Framework\Chili Framework 2016\Release\Engine.exe
