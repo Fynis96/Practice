@@ -78,9 +78,22 @@ describe('addition of a new note', () => {
       important: true,
     }
 
+    const user = await api
+      .post('/api/users')
+      .send({ username: 'Valid user', password: 'valid' })
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+
+    const token = await api
+      .post('/api/login/')
+      .send({ username: user.body.username, password: 'valid' })
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
     await api
       .post('/api/notes')
       .send(newNote)
+      .set({ 'Authorization': `bearer ${token.body.token}`, Accept: 'application/json' })
       .expect(201)
       .expect('Content-Type', /application\/json/)
 
@@ -98,9 +111,17 @@ describe('addition of a new note', () => {
       important: true
     }
 
+
+    const token = await api
+      .post('/api/login/')
+      .send({ username: 'Valid user', password: 'valid' })
+      .expect(200)
+      .expect('Content-Type', /application\/json/)
+
     await api
       .post('/api/notes')
       .send(newNote)
+      .set({ 'Authorization': `bearer ${token.body.token}`, Accept: 'application/json' })
       .expect(400)
 
     const notesAtEnd = await helper.notesInDb()
